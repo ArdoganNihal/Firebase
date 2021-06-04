@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { Provider } from 'react-redux'
 import {
   SafeAreaView,
   ScrollView,
@@ -19,17 +20,30 @@ import {
 import firebase from '@react-native-firebase/app'
 import messaging from '@react-native-firebase/messaging';
 import PushNotification from "react-native-push-notification";
+import Route from "./src/Route"
 
 export default class App extends React.Component{
 
   componentDidMount(){
+    /*
    firebase.messaging().registerDeviceForRemoteMessages().then((res)=>console.log(res)).catch((e)=>console.log(e))
    firebase.messaging().hasPermission().then((enabled)=>{
      firebase.messaging().getToken().then(token=>console.log(token))
    })
-  }
+    messaging().onMessage(data =>{
+      PushNotification.localNotification({
+        title:data.notification.title,
+        message:data.notification.body
+      })
+    });
+    PushNotification.localNotification({
+      title:"test",
+      message:"test"
+    })
+    
+  */}
   render(){
-    return <View></View>
+     return(<Route/>)
   }
 }
 
@@ -56,11 +70,9 @@ PushNotification.configure({
 
     // process the action
   },
-
+  senderId:'738424697087',
   // (optional) Called when the user fails to register for remote notifications. Typically occurs when APNS is having issues, or the device is a simulator. (iOS)
-  /*onRegistrationError: function(err) {
-    console.error(err.message, err);
-  },*/
+  
 
   // IOS ONLY (optional): default: all - Permissions to register.
   permissions: {
